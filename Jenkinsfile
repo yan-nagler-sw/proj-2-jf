@@ -78,7 +78,7 @@ pipeline {
         stage("run-py-be-test") {
             when {
                 expression {
-                    params.test_type == '3'
+                    params.test_type == '2'
                 }
             }
 
@@ -97,7 +97,7 @@ pipeline {
         stage("run-py-fe-test") {
             when {
                 expression {
-                    params.test_type == '3'
+                    params.test_type == '1'
                 }
             }
 
