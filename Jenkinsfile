@@ -114,12 +114,14 @@ pipeline {
         }
 
         stage("run-py-comb-test") {
-            steps {
-                when {
-                    expression {
-                        params.test_type == '3'
-                    }
+            when {
+                expression {
+                    params.test_type == '3'
                 }
+            }
+
+            steps {
+                echo "test_type: ${params.test_type}"
 
                 echo "Running Python script: combined_testing.py..."
                 sh '''
