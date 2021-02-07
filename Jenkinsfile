@@ -57,8 +57,8 @@ pipeline {
                 echo "Running Python script: rest_app.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    nohup $py rest_app.py &
-//                    ${py} backend_testing_rest.py
+#                    nohup $py rest_app.py &
+#                    ${py} backend_testing_rest.py
                     ${py} backend_testing_db.py
                 '''
             }
@@ -69,7 +69,7 @@ pipeline {
                 echo "Running Python script: web_app.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    nohup ${py} web_app.py &
+#                    nohup ${py} web_app.py &
                     ${py} backend_testing_db.py
                 '''
             }
@@ -88,7 +88,7 @@ pipeline {
                 echo "Running Python script: backend_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    ${py} backend_testing.py
+#                    ${py} backend_testing.py
                     ${py} backend_testing_db.py
                 '''
             }
@@ -107,7 +107,7 @@ pipeline {
                 echo "Running Python script: frontend_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    ${py} frontend_testing.py
+#                    ${py} frontend_testing.py
                     ${py} backend_testing_db.py
                 '''
             }
@@ -124,7 +124,7 @@ pipeline {
                 echo "Running Python script: combined_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    ${py} combined_testing.py
+#                    ${py} combined_testing.py
                     ${py} backend_testing_db.py
                 '''
             }
@@ -135,7 +135,7 @@ pipeline {
                 echo "Running Python script: clean_environment.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-//                    ${py} clean_environment.py
+#                    ${py} clean_environment.py
                     ${py} backend_testing_db.py
                 '''
             }
