@@ -32,7 +32,7 @@ pipeline {
         stage("handle-prereq") {
             when {
                 expression {
-                    ${params.test_type} == '3'
+                    params.test_type == '3'
                 }
             }
 
