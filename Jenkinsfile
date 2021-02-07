@@ -32,12 +32,13 @@ pipeline {
 
         stage("handle-prereq") {
             steps {
-                when {
+                echo "Choice: ${params.test_type}"
+/*                when {
                     expression {
                         params.test_type == '3'
                     }
                 }
-
+*/
                 echo "Running Python script: backend_testing_db.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
