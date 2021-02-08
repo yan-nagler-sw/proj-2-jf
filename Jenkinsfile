@@ -20,7 +20,7 @@ pipeline {
     }
 
     stages {
-        stage("Stage: handle-git1") {
+        stage("Stage 1: Handle Git") {
             steps {
                 script {
                     properties([pipelineTriggers([pollSCM('30 * * * *')])])
@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-        stage("handle-prereq") {
+        stage("Stage 2: Handle prerequisites") {
             steps {
                 echo "test_type: ${params.test_type}"
 
@@ -47,7 +47,7 @@ pipeline {
             }
         }
 
-        stage("run-py-rest-app") {
+        stage("Stage 2: Launch REST server") {
             steps {
                 echo "Running Python script: rest_app.py..."
                 sh '''
@@ -58,7 +58,7 @@ pipeline {
             }
         }
 
-        stage("run-py-web-app") {
+        stage("Stage 3: Launch Web server") {
             steps {
                 echo "Running Python script: web_app.py..."
                 sh '''
@@ -68,7 +68,7 @@ pipeline {
             }
         }
 
-        stage("run-py-be-test") {
+        stage("Stage 4: Launch BE test") {
             when {
                 expression {
                     params.test_type == '2'
@@ -86,7 +86,7 @@ pipeline {
             }
         }
 
-        stage("run-py-fe-test") {
+        stage("Stage 5: Launch FE test") {
             when {
                 expression {
                     params.test_type == '1'
@@ -104,7 +104,7 @@ pipeline {
             }
         }
 
-        stage("run-py-comb-test") {
+        stage("Stage 6: Launch combined test") {
             when {
                 expression {
                     params.test_type == '3'
@@ -122,7 +122,7 @@ pipeline {
             }
         }
 
-        stage("run-py-clean-env") {
+        stage("Stage 7: Clean environment") {
             steps {
                 echo "Running Python script: clean_environment.py..."
                 sh '''
