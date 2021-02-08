@@ -3,14 +3,14 @@ pipeline {
 
     parameters {
         choice(
-            name: 'test_type',
+            name: "test_type",
             choices: ['3', '1', '2'],
             description: ''
         )
     }
 
     environment {
-        usr = 'yannagler'
+        usr = "yannagler"
         crs_dir = "/Users/${usr}/Desktop/dev-ops-course"
         env_dir = "${crs_dir}/env"
         py_dir = "${crs_dir}/py"
@@ -52,9 +52,8 @@ pipeline {
                 echo "Running Python script: rest_app.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-                    nohup $py rest_app.py &
-                    ${py} backend_testing_rest.py
-#                    ${py} backend_testing_db.py
+#                    nohup $py rest_app.py &
+#                    ${py} backend_testing_rest.py
                 '''
             }
         }
@@ -65,7 +64,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    nohup ${py} web_app.py &
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -84,7 +82,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} backend_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -103,7 +100,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} frontend_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -122,7 +118,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} combined_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -133,7 +128,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} clean_environment.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
