@@ -23,7 +23,7 @@ pipeline {
         stage("Stage-1: Handle Git") {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
                 }
 
                 git 'https://github.com/yan-nagler-sw/proj-2.git'
@@ -52,8 +52,7 @@ pipeline {
                 echo "Running Python script: rest_app.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    nohup $py rest_app.py &
-#                    ${py} backend_testing_rest.py
+                    nohup $py rest_app.py &
                 '''
             }
         }
@@ -63,7 +62,7 @@ pipeline {
                 echo "Running Python script: web_app.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    nohup ${py} web_app.py &
+                    nohup ${py} web_app.py &
                 '''
             }
         }
@@ -81,7 +80,7 @@ pipeline {
                 echo "Running Python script: backend_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    ${py} backend_testing.py
+                    ${py} backend_testing.py
                 '''
             }
         }
@@ -99,7 +98,7 @@ pipeline {
                 echo "Running Python script: frontend_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    ${py} frontend_testing.py
+                    ${py} frontend_testing.py
                 '''
             }
         }
@@ -117,7 +116,7 @@ pipeline {
                 echo "Running Python script: combined_testing.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    ${py} combined_testing.py
+                    ${py} combined_testing.py
                 '''
             }
         }
@@ -127,7 +126,7 @@ pipeline {
                 echo "Running Python script: clean_environment.py..."
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
-#                    ${py} clean_environment.py
+                    ${py} clean_environment.py
                 '''
             }
         }
@@ -139,20 +138,17 @@ pipeline {
         }
         success {
             echo "post - success"
-/*
+
             mail to: 'yan.nagler@gmail.com',
                  subject: "post - success: ${currentBuild.fullDisplayName}",
                  body: "post - success: ${env.BUILD_URL}"
-*/
         }
         failure {
             echo "post - failure"
-/*
+
             mail to: 'yan.nagler@gmail.com',
                  subject: "post - failure: ${currentBuild.fullDisplayName}",
                  body: "post - failure: ${env.BUILD_URL}"
-*/
-
         }
         unstable {
             echo "post - unstable"
