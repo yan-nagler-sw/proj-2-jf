@@ -142,23 +142,23 @@ pipeline {
 
     post {
         always {
-            sh 'echo "post - always"'
+            echo "post - always"
         }
         success {
-            sh 'echo "post - success"'
+            echo "post - success"
         }
         failure {
-            sh 'echo "post - failure"'
+            echo "post - failure"
 
             mail to: 'yan.nagler@gmail.com',
                  subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                  body: "Something is wrong with ${env.BUILD_URL}"
         }
         unstable {
-            sh 'echo "post - unstable"'
+            echo "post - unstable"
         }
         changed {
-            sh 'echo "post - changed"'
+            echo "post - changed"
         }
     }
 }
