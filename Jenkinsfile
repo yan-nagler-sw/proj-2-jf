@@ -54,7 +54,6 @@ pipeline {
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    nohup $py rest_app.py &
 #                    ${py} backend_testing_rest.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -65,7 +64,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    nohup ${py} web_app.py &
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -84,7 +82,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} backend_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -103,7 +100,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} frontend_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -122,7 +118,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} combined_testing.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
@@ -133,7 +128,6 @@ pipeline {
                 sh '''
                     export PYTHONPATH="${pkgs_dir}:\\$PYTHONPATH"
 #                    ${py} clean_environment.py
-                    ${py} backend_testing_db.py
                 '''
             }
         }
