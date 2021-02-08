@@ -20,7 +20,7 @@ pipeline {
     }
 
     stages {
-        stage("handle-git") {
+        stage("Stage: handle-git") {
             steps {
                 script {
                     properties([pipelineTriggers([pollSCM('30 * * * *')])])
