@@ -142,14 +142,13 @@ pipeline {
     post {
         always {
             echo "post - always"
-
-            mail to: 'yan.nagler@gmail.com',
-                 subject: "post - always: ${currentBuild.fullDisplayName}",
-                 body: "post - always: ${env.BUILD_URL}"
-
         }
         success {
             echo "post - success"
+
+            mail to: 'yan.nagler@gmail.com',
+                 subject: "post - success: ${currentBuild.fullDisplayName}",
+                 body: "post - success: ${env.BUILD_URL}"
         }
         failure {
             echo "post - failure"
