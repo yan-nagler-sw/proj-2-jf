@@ -23,19 +23,15 @@ pipeline {
         stage("handle-git") {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
                 }
+
                 git 'https://github.com/yan-nagler-sw/proj-2.git'
             }
         }
 
         stage("handle-prereq") {
-            when {
-                expression {
-                    params.test_type == '3'
-                }
-            }
-
+            ERR123
             steps {
                 echo "test_type: ${params.test_type}"
 
@@ -141,6 +137,28 @@ pipeline {
                     ${py} backend_testing_db.py
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'echo "post - always"'
+        }
+        success {
+            sh 'echo "post - success"'
+        }
+        failure {
+            sh 'echo "post - failure"'
+
+            mail to: 'yan.nagler@gmail.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
+        }
+        unstable {
+            sh 'echo "post - unstable"'
+        }
+        changed {
+            sh 'echo "post - changed"'
         }
     }
 }
