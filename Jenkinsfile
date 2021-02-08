@@ -23,7 +23,8 @@ pipeline {
         stage("Stage: handle-git") {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
+#                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
                 }
 
                 git 'https://github.com/yan-nagler-sw/proj-2.git'
