@@ -31,7 +31,6 @@ pipeline {
         }
 
         stage("handle-prereq") {
-            ERR123
             steps {
                 echo "test_type: ${params.test_type}"
 
@@ -143,6 +142,11 @@ pipeline {
     post {
         always {
             echo "post - always"
+
+            mail to: 'yan.nagler@gmail.com',
+                 subject: "post - always: ${currentBuild.fullDisplayName}",
+                 body: "post - always: ${env.BUILD_URL}"
+
         }
         success {
             echo "post - success"
@@ -151,8 +155,8 @@ pipeline {
             echo "post - failure"
 
             mail to: 'yan.nagler@gmail.com',
-                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                 body: "Something is wrong with ${env.BUILD_URL}"
+                 subject: "post - failure: ${currentBuild.fullDisplayName}",
+                 body: "post - failure: ${env.BUILD_URL}"
         }
         unstable {
             echo "post - unstable"
