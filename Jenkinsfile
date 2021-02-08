@@ -20,11 +20,10 @@ pipeline {
     }
 
     stages {
-        stage("Stage: handle-git") {
+        stage("Stage: handle-git1") {
             steps {
                 script {
-#                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
                 }
 
                 git 'https://github.com/yan-nagler-sw/proj-2.git'
