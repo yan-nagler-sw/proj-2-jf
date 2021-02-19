@@ -23,7 +23,14 @@ pipeline {
         stage("Stage-1: Handle Git") {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('30 * * * *')])])
+                    properties([
+                        buildDiscarder(logRotator(
+                                        artifactDaysToKeepStr: '',
+                                        artifactNumToKeepStr: '',
+                                        daysToKeepStr: '5',
+                                        numToKeepStr: '1')),
+                        pipelineTriggers([pollSCM('30 * * * *')])
+                    ])
                 }
 
                 git 'https://github.com/yan-nagler-sw/proj-2.git'
